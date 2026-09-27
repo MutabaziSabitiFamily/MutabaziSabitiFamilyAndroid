@@ -78,8 +78,10 @@ private static final int FILE_CHOOSER_REQUEST_CODE = 1001;
         } else {
             super.onBackPressed();
         }
-        @Override
-protected void onActivityResult(
+    }
+
+    @Override
+    protected void onActivityResult(
         int requestCode, int resultCode,
         android.content.Intent data) {
 

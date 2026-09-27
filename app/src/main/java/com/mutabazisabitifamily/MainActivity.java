@@ -2,6 +2,8 @@ package com.mutabazisabitifamily;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,17 +20,21 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        webView = new WebView(this);
-        setContentView(webView);
+        setContentView(R.layout.activity_splash);
 
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            webView = new WebView(this);
+            setContentView(webView);
 
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
+            WebSettings settings = webView.getSettings();
+            settings.setJavaScriptEnabled(true);
+            settings.setDomStorageEnabled(true);
 
-        webView.loadUrl(PORTAL_URL);
+            webView.setWebViewClient(new WebViewClient());
+            webView.setWebChromeClient(new WebChromeClient());
+
+            webView.loadUrl(PORTAL_URL);
+        }, 2000);
     }
 
     @Override
@@ -39,4 +45,4 @@ public class MainActivity extends Activity {
             super.onBackPressed();
         }
     }
-          }
+}
